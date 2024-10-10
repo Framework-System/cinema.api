@@ -13,11 +13,14 @@ namespace Application.Tests
     {
         private readonly IFilmesService filmesService;
         private readonly Mock<ITmdbAdapter> tmdbAdapterMock;
+		private readonly Mock<ICheckInAdapter> checkInAdapterMock;
 
-        public FilmesTests()
+		public FilmesTests()
         {
             tmdbAdapterMock = new Mock<ITmdbAdapter>();
-            filmesService = new FilmesService(tmdbAdapterMock.Object);
+			checkInAdapterMock = new Mock<ICheckInAdapter>();
+
+			filmesService = new FilmesService(tmdbAdapterMock.Object, checkInAdapterMock.Object);
         }
 
         [TestMethod]

@@ -28,4 +28,14 @@ namespace TmdbAdapter.Clients
         [AliasAs("year")]
         public int? Year { get; set; }
     }
+
+
+	internal class TmdbSearchMoviesGetById
+	{
+		[AliasAs("query")]
+		public string Query { get; set; }
+		[AliasAs("api_key")]
+		public string ApiKey { get; set; }
+	}
+
 }

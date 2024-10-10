@@ -56,5 +56,27 @@ namespace Adapter.TmdbAdapter
                 throw;
             }
         }
+
+        public async Task<Movie> GetFilmesPorIdAsync(int movieId)
+        {
+            try
+            {
+				// Faça a chamada para o método da API passando o cabeçalho de autorização
+				var tmdbSearchMoviesGetResult = await tmdbApi
+					.SearchMoviesById(movieId);
+
+				return tmdbSearchMoviesGetResult;
+            }
+            catch (ApiException e)
+            {
+                switch (e.StatusCode)
+                {
+                    case (HttpStatusCode)429:
+                        throw new Exception();
+                }
+
+                throw;
+            }
+        }
     }
 }

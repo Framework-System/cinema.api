@@ -3,6 +3,7 @@ using Api;
 using Application;
 using baseMap;
 using Domain.Services;
+using IMDbAdapter.Mongo;
 using Microsoft.Extensions.DependencyInjection.IMDbAdapter;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,9 @@ builder.Services.AddScoped<IFilmesService, FilmesService>();
 //Adapter
 builder.Services.AddIMDbAdapter(configuration.
     SafeGet<TmdbAdapterConfiguration>());
+
+builder.Services.AddMongo(configuration.
+    SafeGet<MongoDbAdpterConfiguration>());
 
 builder.Services.AddAutoMapperCustomizado();
 
